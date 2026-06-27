@@ -1,0 +1,61 @@
+@model List<Category>
+@{
+
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold m-0 text-primary">Kategori Listesi</h2>
+        <p class="text-muted m-0 mt-2 small">
+            Sistemde kayıtlı kategorileri inceleyebilir, yeni kategori ekleyebilirsiniz.
+        </p>
+    </div>
+    <div>
+        <a asp-controller="Category" asp-action="Create" class="btn btn-warning shadow-sm rounded-3 d-flex align-items-center">
+            <span class="me-2">➕</span>Yeni Kategori Ekle
+        </a>
+    </div>
+</div>
+
+@if(!Model.Any()){
+    <div class="card border-0 rounded-4 shadow-sm p-5 text-center bg-info">
+        <div class="fs-1 mb-3">📚</div>
+        <h4>Kayıtlı kategori yok.</h4>
+        <p class="text-muted">
+            Eklemek için yukarıdaki butonu kullanabilirsiniz.
+        </p>
+    </div>
+} else {
+    <div class="row g-4">
+        @foreach(var category in Model)
+        {
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="card border-0 rounded-4 shadow p-4 d-flex flex-column justify-content-between premium-card">
+                    <div>
+
+                        <h4 class="fw-bold text-dark mt-2">@category.Name</h4>
+ 
+                        <p class="text-muted small">
+                            @(string.IsNullOrEmpty(category.Description) ? "Bu kategori için bir açıklama girilmedi." :
+                    (category.Description.Length > 45 ? category.Description.Substring(0, 40) + "..." :
+                    category.Description))
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                        <div class="d-flex gap-2">
+                            <a asp-controller="Category" asp-action="Details" asp-route-id="@category.Id"
+                               class="btn btn-sm btn-outline-primary rounded-pill">Detay</a>
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id"
+                               class="btn btn-sm btn-outline-warning rounded-pill">Düzenle</a>
+                        </div>
+                        <form asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id"
+                              onsubmit="confirm('@category.Name adlı kitabı silmek istediinizden emin misiniz?';)">
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill">Sil</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

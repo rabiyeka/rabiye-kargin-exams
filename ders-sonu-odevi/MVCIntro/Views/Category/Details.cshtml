@@ -1,0 +1,27 @@
+@model Book
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="premium-card p-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <span class="text-uppercase text-info fw-bold small" style="font-size: 0.75rem; letter-spacing: 0.5px;">@Model.Category</span>
+                <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm fs-6">@Model.Price.ToString("C")</span>
+            </div>
+            <h1 class="fw-bold mb-2">@Model.Title</h1>
+            <p class="text-muted fs-5 mb-4">Yazar: <strong class="text-dark">@Model.Author</strong></p>
+            <div class="mb-4">
+                <h5 class="fw-bold text-dark">Açıklama</h5>
+                <p class="text-secondary" style="line-height: 1.6;">
+                    @(string.IsNullOrEmpty(Model.Description) ? "Bu kitap için açıklama girilmemiştir." : Model.Description)
+                </p>
+            </div>
+            <div class="pt-4 border-top d-flex gap-3">
+                <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning shadow-sm rounded-3">🖊️Düzenle</a>
+                <a asp-controller="Book" asp-action="Index" class="btn btn-outline-info shadow-sm rounded-3">⬅️Kitap Listesine Dön</a>
+            </div>
+        </div>
+    </div>
+</div>

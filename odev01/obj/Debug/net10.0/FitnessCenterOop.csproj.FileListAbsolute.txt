@@ -1,0 +1,14 @@
+/Users/rabiyekargin/Desktop/FitnessCenterOop/bin/Debug/net10.0/FitnessCenterOop
+/Users/rabiyekargin/Desktop/FitnessCenterOop/bin/Debug/net10.0/FitnessCenterOop.deps.json
+/Users/rabiyekargin/Desktop/FitnessCenterOop/bin/Debug/net10.0/FitnessCenterOop.runtimeconfig.json
+/Users/rabiyekargin/Desktop/FitnessCenterOop/bin/Debug/net10.0/FitnessCenterOop.dll
+/Users/rabiyekargin/Desktop/FitnessCenterOop/bin/Debug/net10.0/FitnessCenterOop.pdb
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.AssemblyInfoInputs.cache
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.AssemblyInfo.cs
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.csproj.CoreCompileInputs.cache
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.dll
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/refint/FitnessCenterOop.dll
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.pdb
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/FitnessCenterOop.genruntimeconfig.cache
+/Users/rabiyekargin/Desktop/FitnessCenterOop/obj/Debug/net10.0/ref/FitnessCenterOop.dll

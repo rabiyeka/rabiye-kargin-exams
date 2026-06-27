@@ -1,0 +1,60 @@
+@model Book
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="premium-card p-5">
+            <h2 class="fw-bold mb-3 text-primary">Kitap Güncelle</h2>
+            <p class="text-muted small mb-4">
+                Kitabı güncellemek için aşağıdaki formu kullanabilirsiniz.
+            </p>
+            <form asp-controller="Book" asp-action="Edit" method="post" class="d-flex flex-column gap-3">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.Id" />
+                <div class="mb-3">
+                    <label class="form-label" asp-for=Title></label>
+                    <input asp-for=Title class="form-control" placeholder="Kitap adını giriniz..." />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for=Author></label>
+                    <input asp-for=Author class="form-control" placeholder="Yazar adını giriniz..." />
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label" asp-for=Category></label>
+                        <select asp-for=Category class="form-control" itemid="@Model.Category">
+                            <option value="">Seçiniz...</option>
+                            <option value="Tarih">Tarih</option>
+                            <option value="Edebiyat">Edebiyat</option>
+                            <option value="Tarih / Bilim">Tarih/Bilim</option>
+                            <option value="Felsefe">Felsefe</option>
+                            <option value="Yazılım">Yazılım</option>
+                            <option value="Distopya">Distopya</option>
+                            <option value="Klasik Edebiyat">Klasik Edebiyat</option>
+                            <option value="Roman">Roman</option>
+                            <option value="Modern Klasik">Modern Klasik</option>
+                            <option value="Popüler Bilim">Popüler Bilim</option>
+                            <option value="Bilim Kurgu">Bilim Kurgu</option>
+                            <option value="Bilim / Astronomi">Bilim / Astronomi</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <label class="form-label" asp-for=Price></label>
+                        <input asp-for=Price type="number" class="form-control" placeholder="Fiyatı giriniz..." />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for=Description></label>
+                        <textarea asp-for=Description class="form-control" placeholder="Kitabın açıklamasını giriniz"
+                                  rows="5"></textarea>
+                    </div>
+                    <div class="d-flex pt-3 gap-3">
+                        <button type="submit" class="btn btn-outline-primary">💾Güncelle</button>
+                        <a asp-controller="Book" asp-action="Index" class="btn btn-outline-secondary">⬅️Listeye Dön</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
