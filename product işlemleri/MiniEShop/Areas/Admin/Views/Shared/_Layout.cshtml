@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="Admin" asp-controller="Home" asp-action="Index">E-Shop Admin</a>
+            <div class="d-flex gap-2">
+                <span class="text-white-50 small align-self-center">@User.Identity?.Name</span>
+                <a class="btn btn-outline-light btn-sm" asp-area="" asp-controller="Home" asp-action="Index">Mağazaya Dön</a>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-light btn-sm">Çıkış</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3 col-lg-2 mb-4">
+                <div class="list-group shadow-sm">
+                    <a class="list-group-item list-group-item-action" asp-area="Admin" asp-controller="Home" asp-action="Index">Panel</a>
+                    <a class="list-group-item list-group-item-action" asp-area="Admin" asp-controller="Categories" asp-action="Index">Kategoriler</a>
+                    <a class="list-group-item list-group-item-action" asp-area="Admin" asp-controller="Products" asp-action="Index">Ürünler</a>
+                    <a class="list-group-item list-group-item-action" asp-area="Admin" asp-controller="Orders" asp-action="Index">Siparişler</a>
+                    <a class="list-group-item list-group-item-action" asp-area="Admin" asp-controller="Users" asp-action="Index">Kullanıcılar</a>
+                </div>
+            </aside>
+            <main class="col-md-9 col-lg-10">
+                <partial name="_Alerts" />
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,21 @@
+@model IList<AdminCategoryListItemViewModel>
+@{ ViewData["Title"] = "Kategoriler"; }
+<div class="d-flex justify-content-between mb-4"><h1 class="h3">Kategoriler</h1><a asp-action="Create" class="btn btn-primary">Yeni Kategori</a></div>
+<table class="table table-hover bg-white shadow-sm rounded">
+    <thead class="table-light"><tr><th>Ad</th><th>Açıklama</th><th>Ürün</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td><td>@(c.Description ?? "—")</td><td>@c.ProductCount</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary">Düzenle</a>
+                    <form asp-action="Delete" asp-route-id="@c.Id" method="post" class="d-inline" onsubmit="return confirm('Silinsin mi?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

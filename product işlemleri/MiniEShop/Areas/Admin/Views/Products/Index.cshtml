@@ -1,0 +1,22 @@
+@model IList<ProductListItemViewModel>
+@{ ViewData["Title"] = "Ürünler"; }
+<div class="d-flex justify-content-between mb-4"><h1 class="h3">Ürünler</h1><a asp-action="Create" class="btn btn-primary">Yeni Ürün</a></div>
+<table class="table table-hover bg-white shadow-sm align-middle">
+    <thead class="table-light"><tr><th></th><th>Ad</th><th>Kategori</th><th>Fiyat</th><th>Stok</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td><img src="@p.ImageUrl" alt="@p.Name" style="width:48px;height:48px;object-fit:cover" class="rounded" /></td>
+                <td>@p.Name</td><td>@p.CategoryName</td><td>@p.Price.ToString("N2") ₺</td><td>@p.StockQuantity</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-outline-primary">Düzenle</a>
+                    <form asp-action="Delete" asp-route-id="@p.Id" method="post" class="d-inline" onsubmit="return confirm('Silinsin mi?');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

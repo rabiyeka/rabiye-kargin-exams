@@ -1,0 +1,52 @@
+@model AdminUserFormViewModel
+@{ ViewData["Title"] = "Kullanıcı Düzenle"; }
+<h1 class="h3 mb-4">Kullanıcı Düzenle</h1>
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="card shadow-sm">
+    <div class="card-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Role" class="form-label"></label>
+            <select asp-for="Role" class="form-select">
+                <option value="Customer">Customer</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <span class="form-label d-block">Durum</span>
+            @if (Model.IsLocked)
+            {
+                <span class="badge bg-danger">Kilitli</span>
+            }
+            else
+            {
+                <span class="badge bg-success">Aktif</span>
+            }
+        </div>
+        <hr />
+        <p class="text-muted small mb-3">Şifreyi değiştirmek istemiyorsanız alanları boş bırakın.</p>
+        <div class="mb-3">
+            <label asp-for="NewPassword" class="form-label"></label>
+            <input asp-for="NewPassword" class="form-control" />
+            <span asp-validation-for="NewPassword" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ConfirmNewPassword" class="form-label"></label>
+            <input asp-for="ConfirmNewPassword" class="form-control" />
+            <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a asp-action="Index" class="btn btn-link">İptal</a>
+    </div>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

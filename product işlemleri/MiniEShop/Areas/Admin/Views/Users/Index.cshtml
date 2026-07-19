@@ -1,0 +1,56 @@
+@model IList<AdminUserListItemViewModel>
+@{ ViewData["Title"] = "Kullanıcılar"; }
+<div class="d-flex justify-content-between mb-4">
+    <h1 class="h3">Kullanıcılar</h1>
+    <a asp-action="Create" class="btn btn-primary">Yeni Kullanıcı</a>
+</div>
+<table class="table table-hover bg-white shadow-sm rounded">
+    <thead class="table-light">
+        <tr>
+            <th>E-posta</th>
+            <th>Ad Soyad</th>
+            <th>Roller</th>
+            <th>Durum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Email</td>
+                <td>@(u.FullName ?? "—")</td>
+                <td>
+                    @foreach (var role in u.Roles)
+                    {
+                        <span class="badge bg-secondary me-1">@role</span>
+                    }
+                </td>
+                <td>
+                    @if (u.IsLocked)
+                    {
+                        <span class="badge bg-danger">Kilitli</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">Aktif</span>
+                    }
+                </td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-sm btn-outline-primary">Düzenle</a>
+                    <form asp-action="ToggleLock" asp-route-id="@u.Id" method="post" class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-warning">
+                            @(u.IsLocked ? "Aç" : "Kilitle")
+                        </button>
+                    </form>
+                    <form asp-action="Delete" asp-route-id="@u.Id" method="post" class="d-inline"
+                          onsubmit="return confirm('Bu kullanıcı silinsin mi? İlişkili sepet ve sipariş verileri de kalıcı olarak silinir.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

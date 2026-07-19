@@ -1,0 +1,39 @@
+@model AdminProductFormViewModel
+@{ ViewData["Title"] = "Ürün Düzenle"; }
+<h1 class="h3 mb-4">Ürün Düzenle</h1>
+<div class="row g-4">
+    <div class="col-lg-7">
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="card shadow-sm"><div class="card-body">
+            <partial name="_ProductFormFields" model="Model" />
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+            <a asp-action="Index" class="btn btn-link">İptal</a>
+        </div></form>
+    </div>
+    <div class="col-lg-5">
+        <div class="card shadow-sm"><div class="card-body">
+            <h5>Görsel Yükle</h5>
+            <img id="product-image-preview" src="@Model.ImageUrl" alt="@Model.Name"
+                 class="img-fluid rounded mb-3 border" style="max-height:280px;object-fit:contain;width:100%;" />
+            <form asp-action="UploadImage" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <input type="file" id="imageFile" name="imageFile" class="form-control mb-2" accept="image/*" required />
+                <button type="submit" class="btn btn-outline-primary">Yükle</button>
+            </form>
+        </div></div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('imageFile')?.addEventListener('change', function (e) {
+            const file = e.target.files?.[0];
+            const preview = document.getElementById('product-image-preview');
+            if (!file || !preview) return;
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                preview.src = ev.target?.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+}

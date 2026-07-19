@@ -1,0 +1,33 @@
+@model ProductDetailsViewModel
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="row g-4">
+    <div class="col-md-5">
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded shadow-sm product-detail-img" />
+    </div>
+    <div class="col-md-7">
+        <span class="badge bg-secondary mb-2">@Model.CategoryName</span>
+        <h1 class="h3">@Model.Name</h1>
+        <p class="text-muted">@Model.Description</p>
+        <p class="fs-4 text-primary fw-bold">@Model.Price.ToString("N2") ₺</p>
+        <p>Stok: @Model.StockQuantity</p>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <form asp-action="AddToCart" method="post" class="d-flex gap-2 align-items-end">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <div>
+                    <label class="form-label">Miktar</label>
+                    <input type="number" name="quantity" value="1" min="1" max="@Model.StockQuantity" class="form-control" style="width:100px" />
+                </div>
+                <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+            </form>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Sepete eklemek için giriş yapın</a>
+        }
+    </div>
+</div>

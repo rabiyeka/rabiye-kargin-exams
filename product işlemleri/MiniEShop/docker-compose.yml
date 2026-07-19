@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: eshop_db
+      POSTGRES_USER: eshop
+      POSTGRES_PASSWORD: Qwe123.,
+    ports:
+      - "14100:5432"
+    volumes:
+      - eshop_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  eshop_postgres_data:

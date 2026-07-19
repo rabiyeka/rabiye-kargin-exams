@@ -1,0 +1,8 @@
+@{ ViewData["Title"] = "Yönetim Paneli"; }
+<h1 class="h3 mb-4">Yönetim Paneli</h1>
+<div class="row g-4">
+    <div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><h5>Kategoriler</h5><a asp-controller="Categories" asp-action="Index" class="btn btn-primary btn-sm">Yönet</a></div></div></div>
+    <div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><h5>Ürünler</h5><a asp-controller="Products" asp-action="Index" class="btn btn-primary btn-sm">Yönet</a></div></div></div>
+    <div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><h5>Siparişler</h5><a asp-controller="Orders" asp-action="Index" class="btn btn-primary btn-sm">Yönet</a></div></div></div>
+    <div class="col-md-3"><div class="card shadow-sm"><div class="card-body"><h5>Kullanıcılar</h5><a asp-controller="Users" asp-action="Index" class="btn btn-primary btn-sm">Yönet</a></div></div></div>
+</div>

@@ -1,0 +1,9 @@
+@model AdminProductFormViewModel
+@{ ViewData["Title"] = "Yeni Ürün"; var categories = ViewBag.Categories as IList<AdminCategoryListItemViewModel> ?? []; }
+<h1 class="h3 mb-4">Yeni Ürün</h1>
+<form asp-action="Create" method="post" class="card shadow-sm"><div class="card-body">
+    <partial name="_ProductFormFields" model="Model" />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="Index" class="btn btn-link">İptal</a>
+</div></form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
